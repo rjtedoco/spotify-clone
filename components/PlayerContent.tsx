@@ -34,6 +34,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
 
     if (!nextSong) {
       player.setId(player.ids[0]);
+      return;
     }
 
     player.setId(nextSong);
@@ -49,6 +50,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
 
     if (!previousSong) {
       player.setId(player.ids[player.ids.length - 1]);
+      return;
     }
 
     player.setId(previousSong);
@@ -69,7 +71,7 @@ const PlayerContent = ({ song, songUrl }: PlayerContentProps) => {
     sound?.play();
 
     return () => {
-      sound?.unload;
+      sound?.unload();
     };
   }, [sound]);
 
