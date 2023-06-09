@@ -1,6 +1,6 @@
 import getSongsByTitle from "@/actions/getSongsByTitle";
+import SearchContent from "@/app/search/components/SearchContent";
 import Header from "@/components/Header";
-import SearchContent from "@/components/SearchContent";
 import SearchInput from "@/components/SearchInput";
 
 interface SearchProps {
