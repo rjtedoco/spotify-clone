@@ -27,7 +27,6 @@ const AccountContent = () => {
       const { url, error } = await postData({
         url: "/api/create-portal-link",
       });
-      console.log(url);
       window.location.assign(url);
     } catch (error) {
       toast.error((error as Error).message);
