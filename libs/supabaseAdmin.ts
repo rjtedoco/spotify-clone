@@ -101,7 +101,7 @@ const copyBillingDetailsToCustomer = async (
 ) => {
   const customer = payment_method.customer as string;
   const { name, phone, address } = payment_method.billing_details;
-  if (!name || !phone || address) return;
+  if (!name || !phone || !address) return;
 
   await stripe.customers.update(customer, { name, phone, address });
   const { error } = await supabaseAdmin
@@ -121,7 +121,7 @@ const manageSubscriptionStatusChange = async (
   createAction = false
 ) => {
   const { data: customerData, error: noCustomerError } = await supabaseAdmin
-    .from("customer")
+    .from("customers")
     .select("id")
     .eq("stripe_customer_id", customerId)
     .single();
@@ -176,7 +176,7 @@ const manageSubscriptionStatusChange = async (
   if (error) throw error;
 
   console.log(
-    `Inserted / Updated subscription [${subscription.id} from ${uuid}]`
+    `Inserted / Updated subscription [${subscription.id} for user ${uuid}]`
   );
 
   // For a new subscription copy the billing details to the customer object.

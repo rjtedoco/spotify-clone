@@ -31,7 +31,7 @@ export interface Product {
 
 export interface Price {
   id: string;
-  product_id: string;
+  product_id?: string;
   active?: boolean;
   description?: string;
   unit_amount?: number;
@@ -40,8 +40,12 @@ export interface Price {
   interval?: Stripe.Price.Recurring.Interval;
   interval_count?: number;
   trial_period_days?: number | null;
-  metadata: Stripe.Metadata;
+  metadata?: Stripe.Metadata;
   products?: Product;
+}
+
+export interface ProductWithPrice extends Product {
+  prices?: Price[];
 }
 
 export interface Subscription {
@@ -59,5 +63,6 @@ export interface Subscription {
   cancel_at?: string;
   canceled_at?: string;
   trial_start?: string;
+  trial_end?: string;
   prices?: Price;
 }

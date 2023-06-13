@@ -20,7 +20,7 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export interface Props {
-  [propname: string]: any;
+  [propName: string]: any;
 }
 
 export const MyUserContextProvider = (props: Props) => {
@@ -39,7 +39,7 @@ export const MyUserContextProvider = (props: Props) => {
   const getUserDetails = () => supabase.from("users").select("*").single();
   const getSubscription = () =>
     supabase
-      .from("subscription")
+      .from("subscriptions")
       .select("*, prices(*, products(*))")
       .in("status", ["trialing", "active"])
       .single();
@@ -85,7 +85,7 @@ export const useUser = () => {
   const context = useContext(UserContext);
 
   if (context === undefined) {
-    throw new Error("useUser must be used within a MyUserContextProvider");
+    throw new Error("useUser must be used within a MyUserContextProvider.");
   }
 
   return context;
